@@ -2,17 +2,22 @@ import React from 'react';
 
 function AmountInput({ amount, setAmount, rate }) {
     return (
-        <div>
-            <form>
+        <div className='amount_input'>
+            <form className='form_amount_input'>
                 <input
                     type="number"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
+                    placeholder='type amount'
                 >
                 </input> <span>EUR</span>
             </form>
-            <div> {rate * amount}
-                <span>PLN</span>
+            <div>
+                <input
+                    type="number"
+                    value={rate * amount}
+                >
+                </input> <span>PLN</span>
             </div>
         </div>
     )

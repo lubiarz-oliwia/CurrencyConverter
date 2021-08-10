@@ -1,17 +1,18 @@
+import { parse } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
 
 function TransactionsTable({ transactions, rate, setTransactions }) {
 
     const calculateAmountSum = () => {
         let array = transactions.map((transaction) => {
-            return parseInt(transaction.amountInEur)
+            return parseFloat(transaction.amountInEur)
         })
-        return array.reduce((a, b) => (a + b))
+        return array.reduce((a, b) => (a + b)).toFixed(2)
     }
 
     const calculateAmountSumPln = () => {
         let array = transactions.map((transaction) => {
-            return transaction.amountInEur * transaction.rateInTransactionTime
+            return parseFloat(transaction.amountInEur) * transaction.rateInTransactionTime
         })
         return array.reduce((a, b) => (a + b))
     }
@@ -40,10 +41,10 @@ function TransactionsTable({ transactions, rate, setTransactions }) {
                         return (
                             <tr key={index}>
                                 <td>{transaction.name}</td>
-                                <td>{transaction.amountInEur}</td>
-                                <td>{transaction.rateInTransactionTime}</td>
-                                <td>{(transaction.amountInEur * transaction.rateInTransactionTime).toFixed(2)}</td>
-                                <td>{(transaction.amountInEur * rate).toFixed(2)}</td>
+                                <td>{parseFloat(transaction.amountInEur).toFixed(2)}</td>
+                                <td>{parseFloat(transaction.rateInTransactionTime).toFixed(2)}</td>
+                                <td>{(parseFloat(transaction.amountInEur) * transaction.rateInTransactionTime).toFixed(2)}</td>
+                                <td>{(parseFloat(transaction.amountInEur) * rate).toFixed(2)}</td>
                                 <td><button onClick={() => deleteTransaction(transaction.id)}>Delete</button></td>
                             </tr>
                         )
@@ -56,7 +57,7 @@ function TransactionsTable({ transactions, rate, setTransactions }) {
                         <td>Total sum</td>
                         <td>{calculateAmountSum()}</td>
                         <td>N/A</td>
-                        <td>{calculateAmountSumPln()}</td>
+                        <td>{calculateAmountSumPln().toFixed(2)}</td>
                         <td>{(calculateAmountSum() * rate).toFixed(2)}</td>
                         <td>N/A</td>
                     </tr>

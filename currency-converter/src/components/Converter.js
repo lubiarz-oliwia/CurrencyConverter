@@ -10,7 +10,7 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
     const [error, setError] = useState(false)
 
     const saveTransaction = () => {
-        if (amount <= 0 && transactionName.length < 3) {
+        if (amount <= 0 || transactionName.length < 3) {
             setError(true);
         } else {
             setTransactions([...transactions, {
@@ -28,8 +28,8 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
     }
 
     return (
-        <div>
-            <h1>Currency converter</h1>
+        <div className='converter_container'>
+            <h2>Currency converter</h2>
             <RateChanger
                 rate={rate}
                 setRate={setRate}
@@ -45,8 +45,9 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
                         transactionName={transactionName}
                         setTransactionName={setTransactionName}
                     />
-                    {error ? <p>Fill in the blanks</p> : null}
+                    {error ? <p className='error'>Fill in the blanks</p> : null}
                     <button
+                        className='btn_converter'
                         onClick={saveTransaction}
                     >
                         Save
@@ -54,6 +55,7 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
                 </>
                 :
                 <button
+                    className='btn_converter'
                     onClick={() => setAddTransaction(!addTransaction)}
                 >
                     Add this transaction

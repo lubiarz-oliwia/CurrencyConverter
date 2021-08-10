@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 function RateChanger({ rate, setRate }) {
     const [rateEditable, setRateEditable] = useState(false);
+    const [error, setError] = useState(false)
 
     const editRate = () => {
         setRateEditable(true);
     }
 
     const saveNewRate = (e) => {
-        const value = e.target.elements.amount.value;
         e.preventDefault();
-        setRateEditable(false);
-        setRate(value);
+
+        const value = e.target.elements.amount.value;
+        if (value.length <= 0) {
+            setError(true);
+        }
+        else {
+            setRateEditable(false);
+            setRate(value);
+        }
     }
 
     const cancelRateEdition = () => {
@@ -19,28 +28,34 @@ function RateChanger({ rate, setRate }) {
     }
 
     return (
-        <div>
-            <div className='rate_editor'>
-                {!rateEditable ?
-                    <>
-                        <h2> 1 EUR is equvalent to {rate} PLN</h2>
-                        <button
+        <div className='rate_editor'>
+            {!rateEditable ?
+                <>
+                    <h3> 1 EUR is equvalent to {rate} PLN
+                    <button
+                            className='edit_btn'
                             onClick={editRate}
                         >
-                            Edit</button>
-                    </> : <form
-                        onSubmit={saveNewRate}
-                    >
-                        <h1>1 EUR is equvalent to
+                            <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                    </h3>
+                </> :
+                <form
+                    className='form_rate_editor'
+                    onSubmit={saveNewRate}
+                >
+                    <h3>1 EUR is equvalent to
                             <input
-                                type="number"
-                                name="amount"
-                                step='any'
-                                min={0.01}
-                            >
-                            </input>
+                            type="number"
+                            name="amount"
+                            step='any'
+                            min={0.01}
+                        >
+                        </input>
                        PLN
-                        </h1>
+                        </h3>
+                    {error ? <p className='error'>Fill in the blanks</p> : null}
+                    <div className='form_box_btn'>
                         <button
                             type='submit'
                         >
@@ -51,8 +66,9 @@ function RateChanger({ rate, setRate }) {
                         >
                             Cancel
                         </button>
-                    </form>}
-            </div>
+
+                    </div>
+                </form>}
         </div>
     )
 }
