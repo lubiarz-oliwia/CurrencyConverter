@@ -1,4 +1,3 @@
-import { parse } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
 
 function TransactionsTable({ transactions, rate, setTransactions }) {
@@ -23,6 +22,7 @@ function TransactionsTable({ transactions, rate, setTransactions }) {
             ...filteredTransactions
         ])
     }
+    
     return (
         <table >
             <thead>

@@ -27,7 +27,7 @@ function TransactionsInfo({ transactions }) {
                     </p>
                 </>
             }
-                <h3>Number of all transactions:
+                <h3>Number of transactions:
                 <span> {transactions.length} </span>
                 </h3>
             </div>

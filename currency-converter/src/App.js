@@ -1,15 +1,20 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Converter from './components/Converter';
 import TransactionsTable from './components/TransactionsTable';
 import TransactionsInfo from './components/TransactionsInfo';
+import { getRate } from './actions/currencyRate';
 
 function App() {
-  const [rate, setRate] = useState(5);
+  const [rate, setRate] = useState();
   const [transactions, setTransactions] = useState([{ name: 'transaction1', amountInEur: "123.56", rateInTransactionTime: 4, id: Math.random() },
   { name: 'transaction2', amountInEur: "12.12", rateInTransactionTime: 4.5687, id: Math.random() }]);
 
-  console.log(transactions)
+  useEffect(() => {
+    getRate(setRate);
+}, [])
+
+console.log(rate)
 
   return (
     <div className='container'>
