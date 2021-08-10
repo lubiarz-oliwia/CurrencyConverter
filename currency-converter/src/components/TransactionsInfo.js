@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function TransactionsInfo({ transactions }) {
     let maxAmount = Math.max(...transactions.map(transaction => transaction.amountInEur));
@@ -36,4 +36,4 @@ function TransactionsInfo({ transactions }) {
     )
 }
 
-export default TransactionsInfo
+export default TransactionsInfo;

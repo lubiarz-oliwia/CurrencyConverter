@@ -1,4 +1,4 @@
-export const API_URL = "https://api.nbp.pl/api/exchangerates/rates/c/eur/today?format=json"
+export const API_URL = "https://api.nbp.pl/api/exchangerates/rates/c/eur/today?format=json";
 
 export const getRate = (successCallback) => {
     return fetch(API_URL)

@@ -12,9 +12,7 @@ function App() {
 
   useEffect(() => {
     getRate(setRate);
-}, [])
-
-console.log(rate)
+  }, [])
 
   return (
     <div className='container'>
