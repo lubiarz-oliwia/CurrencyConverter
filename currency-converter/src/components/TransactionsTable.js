@@ -7,22 +7,22 @@ function TransactionsTable({ transactions, rate, setTransactions }) {
             return parseFloat(transaction.amountInEur)
         })
         return array.reduce((a, b) => (a + b)).toFixed(2)
-    }
+    };
 
     const calculateAmountSumPln = () => {
         let array = transactions.map((transaction) => {
             return parseFloat(transaction.amountInEur) * transaction.rateInTransactionTime
         })
         return array.reduce((a, b) => (a + b))
-    }
+    };
 
     const deleteTransaction = (transactionId) => {
         let filteredTransactions = transactions.filter((el) => el.id !== transactionId)
         setTransactions([
             ...filteredTransactions
         ])
-    }
-    
+    };
+
     return (
         <table >
             <thead>

@@ -7,10 +7,10 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
     const [addTransaction, setAddTransaction] = useState(false);
     const [amount, setAmount] = useState('');
     const [transactionName, setTransactionName] = useState('');
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
 
     const saveTransaction = () => {
-        if (amount <= 0 || transactionName.length < 3) {
+        if (amount <= 0 || transactionName.length < 1) {
             setError(true);
         } else {
             setTransactions([...transactions, {
@@ -19,7 +19,7 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
                 rateInTransactionTime: rate,
                 id: Math.random()
             }
-            ])
+            ]);
             setAddTransaction(false);
             setAmount('');
             setTransactionName('');
@@ -64,4 +64,4 @@ function Converter({ rate, setRate, transactions, setTransactions }) {
     )
 }
 
-export default Converter
+export default Converter;

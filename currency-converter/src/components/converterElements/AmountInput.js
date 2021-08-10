@@ -8,7 +8,7 @@ function AmountInput({ amount, setAmount, rate }) {
                     type="number"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
-                    placeholder='type amount'
+                    placeholder='insert amount'
                 >
                 </input> <span>EUR</span>
             </form>
