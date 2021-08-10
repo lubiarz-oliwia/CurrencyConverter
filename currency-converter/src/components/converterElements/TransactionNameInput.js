@@ -2,16 +2,16 @@ import React from 'react';
 
 function TransactionNameInput({ transactionName, setTransactionName }) {
     return (
-        <form>
+        <form className='form_transaction_name'>
             <label>
                 Transaction name:
-                <input
-                    type="text"
-                    value={transactionName}
-                    onChange={e => setTransactionName(e.target.value)}
-                >
-                </input>
             </label>
+            <input
+                type="text"
+                value={transactionName}
+                onChange={e => setTransactionName(e.target.value)}
+            >
+            </input>
         </form>
     )
 }
